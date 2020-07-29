@@ -170,6 +170,8 @@
   <ItemGroup>
     <None Include="Resources\Shaders\basic.frag" />
     <None Include="Resources\Shaders\basic.vert" />
+    <None Include="Resources\Shaders\basicMinor.frag" />
+    <None Include="Resources\Shaders\basicMinor.vert" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Images\square.png" />

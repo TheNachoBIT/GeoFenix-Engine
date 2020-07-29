@@ -227,7 +227,7 @@ namespace geofenix {
 		void Window::InitComponents()
 		{
 			//Shaders
-			allShaders.push_back(new Shader("Resources/Shaders/basic.vert", "Resources/Shaders/basic.frag"));
+			allShaders.push_back(new Shader("Resources/Shaders/basic.vert", "Resources/Shaders/basic.frag", "Resources/Shaders/basicMinor.vert", "Resources/Shaders/basicMinor.frag"));
 
 			//Textures
 			allTextures.push_back(new Texture("Resources/Images/square.png", GL_TEXTURE_2D, 0, 200, 200));

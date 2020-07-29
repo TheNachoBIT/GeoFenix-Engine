@@ -20,9 +20,11 @@ namespace geofenix
 			GLuint shaderID;
 			const char* vertPath;
 			const char* fragPath;
+			const char* vertPathMinor;
+			const char* fragPathMinor;
 			mutable std::unordered_map<std::string, GLint> uniformLocationCache;
 
-			Shader(const char* vertexPath, const char* fragmentPath);
+			Shader(const char* vertexPathMajor, const char* fragmentPathMajor, const char* vertexPathMinor, const char* fragmentPathMinor);
 			~Shader();
 
 			GLint getUniformLocation(const GLchar* name) const;
@@ -37,7 +39,7 @@ namespace geofenix
 			void enable() const;
 			void disable() const;
 
-			GLuint load();
+			GLuint load(const char* vert, const char* frag);
 		};
 	}
 }

@@ -4,10 +4,10 @@ namespace geofenix
 {
 	namespace graphics
 	{
-		Shader::Shader(const char* vertexPath, const char* fragmentPath)
-			: vertPath(vertexPath), fragPath(fragmentPath)
+		Shader::Shader(const char* vertexPathMajor, const char* fragmentPathMajor, const char* vertexPathMinor, const char* fragmentPathMinor)
+			: vertPath(vertexPathMajor), fragPath(fragmentPathMajor), vertPathMinor(vertexPathMinor), fragPathMinor(fragmentPathMinor)
 		{
-			shaderID = load();
+			shaderID = load(vertPath, fragPath);
 		}
 
 		Shader::~Shader()
@@ -15,7 +15,7 @@ namespace geofenix
 			glDeleteProgram(shaderID);
 		}
 
-		GLuint Shader::load()
+		GLuint Shader::load(const char* vert, const char* frag)
 		{
 			prog = glCreateProgram();
 			GLuint vertShader = glCreateShader(GL_VERTEX_SHADER);
@@ -35,6 +35,8 @@ namespace geofenix
 
 			if (result == GL_FALSE)
 			{
+				if (vertPathMinor == "" && fragPathMinor == "")
+				{
 				GLint length;
 				glGetShaderiv(vertShader, GL_INFO_LOG_LENGTH, &length);
 				std::vector<char> error(length);
@@ -42,6 +44,9 @@ namespace geofenix
 				std::cout << "Error compiling vertex shader :C >> " << &error[0] << std::endl;
 				glDeleteShader(vertShader);
 				return 0;
+				}
+				else
+					load(vertPathMinor, fragPathMinor);
 			}
 
 			glShaderSource(fragShader, 1, &fragmentSource, NULL);
@@ -51,13 +56,18 @@ namespace geofenix
 
 			if (result == GL_FALSE)
 			{
-				GLint length;
-				glGetShaderiv(fragShader, GL_INFO_LOG_LENGTH, &length);
-				std::vector<char> error(length);
-				glGetShaderInfoLog(fragShader, length, &length, &error[0]);
-				std::cout << "Error compiling fragment shader :C >> " << &error[0] << std::endl;
-				glDeleteShader(fragShader);
-				return 0;
+				if (vertPathMinor == "" && fragPathMinor == "")
+				{
+					GLint length;
+					glGetShaderiv(fragShader, GL_INFO_LOG_LENGTH, &length);
+					std::vector<char> error(length);
+					glGetShaderInfoLog(fragShader, length, &length, &error[0]);
+					std::cout << "Error compiling fragment shader :C >> " << &error[0] << std::endl;
+					glDeleteShader(fragShader);
+					return 0;
+				}
+				else
+					load(vertPathMinor, fragPathMinor);
 			}
 
 			glAttachShader(prog, vertShader);

@@ -7,7 +7,7 @@ namespace geofenix
 		Shader::Shader(const char* vertexPathMajor, const char* fragmentPathMajor, const char* vertexPathMinor, const char* fragmentPathMinor)
 			: vertPath(vertexPathMajor), fragPath(fragmentPathMajor), vertPathMinor(vertexPathMinor), fragPathMinor(fragmentPathMinor)
 		{
-			shaderID = load(vertPath, fragPath);
+			shaderID = load();
 		}
 
 		Shader::~Shader()
@@ -15,17 +15,28 @@ namespace geofenix
 			glDeleteProgram(shaderID);
 		}
 
-		GLuint Shader::load(const char* vert, const char* frag)
+		bool useMinor;
+		GLuint Shader::load()
 		{
+
 			prog = glCreateProgram();
 			GLuint vertShader = glCreateShader(GL_VERTEX_SHADER);
 			GLuint fragShader = glCreateShader(GL_FRAGMENT_SHADER);
 
+			GLuint vertShaderMin = glCreateShader(GL_VERTEX_SHADER);
+			GLuint fragShaderMin = glCreateShader(GL_FRAGMENT_SHADER);
+
 			std::string vertString = File::Read(vertPath);
 			std::string fragmentString = File::Read(fragPath);
 
+			std::string vertStringMin = File::Read(vertPathMinor);
+			std::string fragmentStringMin = File::Read(fragPathMinor);
+
 			const char* vertexSource = vertString.c_str();
 			const char* fragmentSource = fragmentString.c_str();
+
+			const char* vertexSourceMin = vertStringMin.c_str();
+			const char* fragmentSourceMin = fragmentStringMin.c_str();
 
 			glShaderSource(vertShader, 1, &vertexSource, NULL);
 			glCompileShader(vertShader);
@@ -33,20 +44,16 @@ namespace geofenix
 			GLint result;
 			glGetShaderiv(vertShader, GL_COMPILE_STATUS, &result);
 
+			//Mayor
 			if (result == GL_FALSE)
 			{
-				if (vertPathMinor == "" && fragPathMinor == "")
-				{
 				GLint length;
 				glGetShaderiv(vertShader, GL_INFO_LOG_LENGTH, &length);
 				std::vector<char> error(length);
 				glGetShaderInfoLog(vertShader, length, &length, &error[0]);
 				std::cout << "Error compiling vertex shader :C >> " << &error[0] << std::endl;
 				glDeleteShader(vertShader);
-				return 0;
-				}
-				else
-					load(vertPathMinor, fragPathMinor);
+				useMinor = true;
 			}
 
 			glShaderSource(fragShader, 1, &fragmentSource, NULL);
@@ -56,28 +63,74 @@ namespace geofenix
 
 			if (result == GL_FALSE)
 			{
-				if (vertPathMinor == "" && fragPathMinor == "")
-				{
-					GLint length;
-					glGetShaderiv(fragShader, GL_INFO_LOG_LENGTH, &length);
-					std::vector<char> error(length);
-					glGetShaderInfoLog(fragShader, length, &length, &error[0]);
-					std::cout << "Error compiling fragment shader :C >> " << &error[0] << std::endl;
-					glDeleteShader(fragShader);
-					return 0;
-				}
-				else
-					load(vertPathMinor, fragPathMinor);
+				GLint length;
+				glGetShaderiv(fragShader, GL_INFO_LOG_LENGTH, &length);
+				std::vector<char> error(length);
+				glGetShaderInfoLog(fragShader, length, &length, &error[0]);
+				std::cout << "Error compiling fragment shader :C >> " << &error[0] << std::endl;
+				glDeleteShader(fragShader);
+				useMinor = true;
 			}
 
-			glAttachShader(prog, vertShader);
-			glAttachShader(prog, fragShader);
+			//Minor
 
-			glLinkProgram(prog);
-			glValidateProgram(prog);
+			if (useMinor)
+			{
+				glShaderSource(vertShaderMin, 1, &vertexSourceMin, NULL);
+				glCompileShader(vertShaderMin);
 
-			glDeleteShader(vertShader);
-			glDeleteShader(fragShader);
+				glGetShaderiv(vertShaderMin, GL_COMPILE_STATUS, &result);
+
+				if (result == GL_FALSE)
+				{
+					GLint length;
+					glGetShaderiv(vertShaderMin, GL_INFO_LOG_LENGTH, &length);
+					std::vector<char> error(length);
+					glGetShaderInfoLog(vertShaderMin, length, &length, &error[0]);
+					std::cout << "Error compiling vertex shader :C >> " << &error[0] << std::endl;
+					glDeleteShader(vertShaderMin);
+					return 0;
+				}
+
+				glShaderSource(fragShaderMin, 1, &fragmentSourceMin, NULL);
+				glCompileShader(fragShaderMin);
+
+				glGetShaderiv(fragShaderMin, GL_COMPILE_STATUS, &result);
+
+				if (result == GL_FALSE)
+				{
+					GLint length;
+					glGetShaderiv(fragShaderMin, GL_INFO_LOG_LENGTH, &length);
+					std::vector<char> error(length);
+					glGetShaderInfoLog(fragShaderMin, length, &length, &error[0]);
+					std::cout << "Error compiling fragment shader :C >> " << &error[0] << std::endl;
+					glDeleteShader(fragShaderMin);
+					return 0;
+				}
+			}
+
+			if (!useMinor)
+			{
+				glAttachShader(prog, vertShader);
+				glAttachShader(prog, fragShader);
+
+				glLinkProgram(prog);
+				glValidateProgram(prog);
+
+				glDeleteShader(vertShader);
+				glDeleteShader(fragShader);
+			}
+			else
+			{
+				glAttachShader(prog, vertShaderMin);
+				glAttachShader(prog, fragShaderMin);
+
+				glLinkProgram(prog);
+				glValidateProgram(prog);
+
+				glDeleteShader(vertShaderMin);
+				glDeleteShader(fragShaderMin);
+			}
 
 			return prog;
 		}

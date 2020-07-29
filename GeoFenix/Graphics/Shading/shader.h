@@ -39,7 +39,7 @@ namespace geofenix
 			void enable() const;
 			void disable() const;
 
-			GLuint load(const char* vert, const char* frag);
+			GLuint load();
 		};
 	}
 }

@@ -40,7 +40,7 @@ namespace geofenix
 
 		void Sprite::StartVAO()
 		{
-			glCreateVertexArrays(1, &VAO);
+			glGenVertexArrays(1, &VAO);
 			glBindVertexArray(VAO);
 
 			glGenBuffers(1, &VBO);

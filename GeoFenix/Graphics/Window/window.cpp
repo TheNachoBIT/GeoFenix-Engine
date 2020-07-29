@@ -51,6 +51,7 @@ namespace geofenix {
 
 			glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 			glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
+			glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_FALSE);
 
 			if(!fullScreen)
 				m_Window = glfwCreateWindow(m_Width, m_Height, m_Name, NULL, NULL);

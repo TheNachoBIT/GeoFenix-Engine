@@ -1,9 +1,9 @@
 #version 130
 #extension GL_ARB_explicit_attrib_location : require
 
-layout (location = 0) in vec3 vertex_position;
-layout (location = 1) in vec3 vertex_color;
-layout (location = 2) in vec2 vertex_texcoord;
+in vec3 vertex_position;
+in vec3 vertex_color;
+in vec2 vertex_texcoord;
 
 out vec3 vs_position;
 out vec3 vs_color;

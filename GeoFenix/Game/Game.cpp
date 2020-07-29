@@ -12,8 +12,8 @@ namespace geofenix
 	{
 		Details(window);
 		batch = new Batch(*window.allTextures[0]);
-		for(int x = 0; x < 100; x++)
-			for (int y = 0; y < 1000; y++)
+		for(int x = 0; x < 10; x++)
+			for (int y = 0; y < 10; y++)
 				new Object(batch->CreateObject(glm::vec3(x, y, 0.0f), glm::vec3(1.f)));
 	}
 

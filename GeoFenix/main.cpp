@@ -18,7 +18,7 @@ int main()
 	void Input(Window window, Sprite& sprite);
 
 	Game::Start(mainWindow);
-	
+
 	while(!mainWindow.Close())
 	{
 		mainWindow.Clear();
@@ -31,8 +31,6 @@ int main()
 
 		mainWindow.Update();
 	}
-
-	std::cin.get();
 	return 0;
 }
 

@@ -12,13 +12,18 @@ namespace geofenix
 	{
 		Details(window);
 		batch = new Batch(*window.allTextures[0]);
-		for (int x = 0; x < 10; x++)
-			for (int y = 0; y < 10; y++)
-				new Object(batch->CreateObject(glm::vec3(x * 2, y * 2, 0.0f), glm::vec3(2.0f, 0.5f, 0.f)));
+		for (int x = 0; x < 100; x++)
+			for (int y = 0; y < 100; y++)
+				new Object(batch->CreateObject(glm::vec3(x, y, x - y), glm::vec3(1.0f, 2.0f, 0)));
+
+		/*
+
+		Nickname, Te comente esto para que no rompa los huevos la consola perdon x'd
+
 		std::string pija;
 		geofenix::web::get("www.google.com", pija);
 		std::cout << pija;
-
+		*/
 	}
 
 

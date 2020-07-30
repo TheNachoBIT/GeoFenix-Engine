@@ -4,19 +4,21 @@ namespace geofenix {
     namespace web {
 
         size_t writeFunction(void* ptr, size_t size, size_t nmemb, std::string* data) {
-            
+
             data->append((char*)ptr, size * nmemb);
             return size * nmemb;
         }
 
         /*
-How to use:
-std::string string;
-get("http://google.com", string);
+            How to use:
+            std::string string;
+            get("http://google.com", string);
 
-Returns a vector*/
+            Returns a vector
+
+        */
         void get(char const* url, std::string& response_string) {
-           
+
             auto curl = curl_easy_init();
             if (curl) {
                 curl_easy_setopt(curl, CURLOPT_URL, url);
@@ -43,6 +45,33 @@ Returns a vector*/
                 curl = NULL;
             }
         }
-	}
+        /*
+        How to use:
+        web::post("website.com","username=nick&password=geofenix",string);
+        std::cout << string;
+        */
+        void post(const char* url,const char* params,std::string& string) {
+            CURL* curl;
+            CURLcode res;
 
+            /* In windows, this will init the winsock stuff */
+            curl_global_init(CURL_GLOBAL_ALL);
+
+            /* get a curl handle */
+            curl = curl_easy_init();
+            if (curl) {
+                curl_easy_setopt(curl, CURLOPT_URL, url);
+                curl_easy_setopt(curl, CURLOPT_POSTFIELDS, params);
+                res = curl_easy_perform(curl);
+                if (res != CURLE_OK)
+                    fprintf(stderr, "curl_easy_perform() failed: %s\n",
+                        curl_easy_strerror(res));
+
+                curl_easy_setopt(curl, CURLOPT_WRITEDATA, string); //escribir la data en la string
+
+                curl_easy_cleanup(curl);
+            }
+        }
+    }
 }
+

@@ -11,5 +11,7 @@ namespace geofenix {
 		
 		Returns a vector*/
 		void get(char const*  url, std::string& response_string);
+
+		void post(char const* url, const char*, std::string& string);
 	}
 }

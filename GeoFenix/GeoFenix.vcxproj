@@ -142,6 +142,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Game\Game.cpp" />
+    <ClCompile Include="Geometry Dash\gd.cpp" />
     <ClCompile Include="Graphics\Batch\batch.cpp" />
     <ClCompile Include="Graphics\Batch\Object\Object.cpp" />
     <ClCompile Include="Graphics\Camera\camera.cpp" />
@@ -156,6 +157,7 @@
   <ItemGroup>
     <ClInclude Include="FileSystem\file.h" />
     <ClInclude Include="Game\Game.h" />
+    <ClInclude Include="Geometry Dash\gd.h" />
     <ClInclude Include="Graphics\Batch\batch.h" />
     <ClInclude Include="Graphics\Batch\Object\Object.h" />
     <ClInclude Include="Graphics\Camera\camera.h" />

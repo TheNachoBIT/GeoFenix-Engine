@@ -2,6 +2,7 @@
 #include <iostream>
 #include "../Graphics/Window/window.h"
 #include "../Graphics/Batch/batch.h"
+#include "../Web/web.h"
 #define Print(x) std::cout << x << std::endl;
 
 namespace geofenix

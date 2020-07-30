@@ -77,13 +77,13 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)/Libraries/SOIL2/include;$(SolutionDir)/Libraries/GLM/include;$(SolutionDir)/Libraries/GLEW/include;$(SolutionDir)/Libraries/GLFW/Win32/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)/Libraries/CURL/Win32/include;$(SolutionDir)/Libraries/SOIL2/include;$(SolutionDir)/Libraries/GLM/include;$(SolutionDir)/Libraries/GLEW/include;$(SolutionDir)/Libraries/GLFW/Win32/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>$(SolutionDir)\Libraries\SOIL2\lib\Win32;$(SolutionDir)\Libraries\GLEW\lib\Win32;$(SolutionDir)\Libraries\GLFW\Win32\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;soil2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Libraries\CURL\Win32\lib;$(SolutionDir)\Libraries\SOIL2\lib\Win32;$(SolutionDir)\Libraries\GLEW\lib\Win32;$(SolutionDir)\Libraries\GLFW\Win32\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;soil2.lib;libcurl_a.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -92,13 +92,13 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)/Libraries/SOIL2/include;$(SolutionDir)/Libraries/GLM/include;$(SolutionDir)/Libraries/GLEW/include;$(SolutionDir)/Libraries/GLFW/Win64/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)/Libraries/CURL/Win64/include;$(SolutionDir)/Libraries/SOIL2/include;$(SolutionDir)/Libraries/GLM/include;$(SolutionDir)/Libraries/GLEW/include;$(SolutionDir)/Libraries/GLFW/Win64/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>$(SolutionDir)\Libraries\SOIL2\lib\Win64;$(SolutionDir)\Libraries\GLEW\lib\Win64;$(SolutionDir)\Libraries\GLFW\Win64\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;soil2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Libraries\CURL\Win64\lib;$(SolutionDir)\Libraries\SOIL2\lib\Win64;$(SolutionDir)\Libraries\GLEW\lib\Win64;$(SolutionDir)\Libraries\GLFW\Win64\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;soil2.lib;libcurl_a.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -109,7 +109,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)/Libraries/SOIL2/include;$(SolutionDir)/Libraries/GLM/include;$(SolutionDir)/Libraries/GLEW/include;$(SolutionDir)/Libraries/GLFW/Win32/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)/Libraries/CURL/Win32/include;$(SolutionDir)/Libraries/SOIL2/include;$(SolutionDir)/Libraries/GLM/include;$(SolutionDir)/Libraries/GLEW/include;$(SolutionDir)/Libraries/GLFW/Win32/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
     </ClCompile>
@@ -117,8 +117,8 @@
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)\Libraries\SOIL2\lib\Win32;$(SolutionDir)\Libraries\GLEW\lib\Win32;$(SolutionDir)\Libraries\GLFW\Win32\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;soil2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Libraries\CURL\Win32\lib;$(SolutionDir)\Libraries\SOIL2\lib\Win32;$(SolutionDir)\Libraries\GLEW\lib\Win32;$(SolutionDir)\Libraries\GLFW\Win32\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;soil2.lib;libcurl_a.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -129,15 +129,15 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)/Libraries/SOIL2/include;$(SolutionDir)/Libraries/GLM/include;$(SolutionDir)/Libraries/GLEW/include;$(SolutionDir)/Libraries/GLFW/Win64/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)/Libraries/CURL/Win64/include;$(SolutionDir)/Libraries/SOIL2/include;$(SolutionDir)/Libraries/GLM/include;$(SolutionDir)/Libraries/GLEW/include;$(SolutionDir)/Libraries/GLFW/Win64/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)\Libraries\SOIL2\lib\Win64;$(SolutionDir)\Libraries\GLEW\lib\Win64;$(SolutionDir)\Libraries\GLFW\Win64\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;soil2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Libraries\CURL\Win64\lib;$(SolutionDir)\Libraries\SOIL2\lib\Win64;$(SolutionDir)\Libraries\GLEW\lib\Win64;$(SolutionDir)\Libraries\GLFW\Win64\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;soil2.lib;libcurl_a.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

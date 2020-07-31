@@ -23,7 +23,7 @@ namespace geofenix
 			Batch(Texture& tex);
 			~Batch();
 
-			Object CreateObject(glm::vec3 pos, glm::vec3 sca);
+			Object CreateObject(glm::vec3 pos, glm::vec3 rot, glm::vec3 sca);
 
 			void Render(Shader* shader);
 		};

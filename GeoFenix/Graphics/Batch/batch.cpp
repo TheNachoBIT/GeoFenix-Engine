@@ -19,9 +19,9 @@ namespace geofenix
 			glDeleteBuffers(1, &EBO);
 		}
 
-		Object Batch::CreateObject(glm::vec3 pos, glm::vec3 sca)
+		Object Batch::CreateObject(glm::vec3 pos, glm::vec3 rot, glm::vec3 sca)
 		{
-			Object obj(pos, sca);
+			Object obj(pos, rot, sca);
 			allObjects.push_back(&obj);
 			return obj;
 		}

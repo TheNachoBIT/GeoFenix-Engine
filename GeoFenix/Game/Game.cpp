@@ -12,9 +12,8 @@ namespace geofenix
 	{
 		Details(window);
 		batch = new Batch(*window.allTextures[0]);
-		for (int x = 0; x < 100; x++)
-			for (int y = 0; y < 100; y++)
-				new Object(batch->CreateObject(glm::vec3(x, y, x - y), glm::vec3(1.0f, 2.0f, 0)));
+		new Object(batch->CreateObject(glm::vec3(0, 0, 0), glm::vec3(0.f, 0.f, 0.f), glm::vec3(1.0f)));
+		new Object(batch->CreateObject(glm::vec3(1, 0, 0), glm::vec3(0.f, 0.f, 0.f), glm::vec3(1.0f)));
 
 		/*
 
@@ -32,6 +31,8 @@ namespace geofenix
 	void Game::Update(Window& window)
 	{
 		batch->Render(window.allShaders[0]);
+
+		batch->allObjects[1]->rotation.z += 0.05f;
 
 		if (window.isKeyPressed(GLFW_KEY_ESCAPE))
 		{

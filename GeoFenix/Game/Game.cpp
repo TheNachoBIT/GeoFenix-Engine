@@ -12,13 +12,15 @@ namespace geofenix
 	{
 		Details(window);
 		batch = new Batch(*window.allTextures[0]);
-		for(int x = 0; x < 100; x++)
-			for (int y = 0; y < 100; y++)
+		for(int x = 0; x < 10; x++)
+			for (int y = 0; y < 10; y++)
 			{
-				new Object(batch->CreateObject(glm::vec3(x, y, 0), glm::vec3(0.f, 0.f, 0.f), glm::vec3(1.0f)));
+				new Object(batch->CreateObject(glm::vec3(x, y, 0), glm::vec3(0.f, 0.f, x + y * 10.0f), glm::vec3(1.0f)));
 			}
 
 		/*
+
+
 
 		Nickname, Te comente esto para que no rompa los huevos la consola perdon x'd
 
@@ -29,14 +31,17 @@ namespace geofenix
 	}
 
 
+
+	void SayHello()
+	{
+		printf("Hello! \n");
+	}
+
 	int frames = 0;
 	bool done = false;
 	void Game::Update(Window& window)
 	{
 		batch->Render(window.allShaders[0]);
-
-		for(auto i : batch->allObjects)
-			i->rotation.z += 0.5f;
 
 		if (window.isKeyPressed(GLFW_KEY_ESCAPE))
 		{

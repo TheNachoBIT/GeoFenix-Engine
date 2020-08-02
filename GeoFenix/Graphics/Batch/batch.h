@@ -1,5 +1,6 @@
 #pragma once
 
+#include <thread>
 #include "Object\Object.h"
 
 namespace geofenix

@@ -3,6 +3,7 @@
 #include "../Graphics/Window/window.h"
 #include "../Graphics/Batch/batch.h"
 #include "../Web/web.h"
+#include <thread>
 #define Print(x) std::cout << x << std::endl;
 
 namespace geofenix
@@ -21,6 +22,7 @@ namespace geofenix
 			Print("");
 			Print("Welcome to GeoFenix!");
 			Print("Current Resolution: " << window.m_Width << " x " << window.m_Height);
+			Print("Amount of cores: " << std::thread::hardware_concurrency());
 			Print("");
 			Print("Created by NachoBIT (twitter.com/TheNachoBIT)");
 			Print("TEST BUILD 0.01");

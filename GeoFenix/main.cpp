@@ -3,13 +3,19 @@
 //#include "Maths\vertex.h"
 //#include "Resources\TestingScripts\rendertriangle.h"
 
+using namespace geofenix;
+using namespace graphics;
+
+void setWindowFPS(GLFWwindow* win);
+
+void Prnt()
+{
+	printf("Hello!");
+}
+
 int main()
 {
-	using namespace geofenix;
-	using namespace graphics;
-
 	Window mainWindow("GeoFenix Engine", 1280, 720, false);
-
 	//win = mainWindow;
 	//shaderT = shader;
 	//SetTriangle();
@@ -19,7 +25,7 @@ int main()
 
 	Game::Start(mainWindow);
 
-	while(!mainWindow.Close())
+	while (!mainWindow.Close())
 	{
 		mainWindow.Clear();
 		setWindowFPS(mainWindow.m_Window);
@@ -31,6 +37,7 @@ int main()
 
 		mainWindow.Update();
 	}
+	
 	return 0;
 }
 

@@ -13,31 +13,9 @@ namespace geofenix
 			lastRotation = rot + glm::vec3(1.0f);
 		}
 
-		glm::mat3 rodriguesMatrix(const double degrees, const glm::vec3& axis) {
-			glm::mat3 v = glm::mat3(
-				axis.x * axis.x, axis.x * axis.y, axis.x * axis.z,
-				axis.x * axis.y, axis.y * axis.y, axis.y * axis.z,
-				axis.x * axis.z, axis.y * axis.z, axis.z * axis.z
-			);
-
-			glm::mat3 v2 = glm::mat3(
-				0, -axis.z, axis.y,
-				axis.z, 0, -axis.x,
-				-axis.y, axis.x, 0
-			);
-			glm::mat3 cosMat(cos(degrees * M_PI / 180.f));
-			v *= 1 - cos(degrees * M_PI / 180.f);
-			v2 *= sin(degrees * M_PI / 180.f);
-			glm::mat3 rotation = cosMat + v + v2;
-
-			return rotation;
-		}
-
+		glm::mat4 One(1.0f);
 		Vertex* Object::UpdateObject(Vertex* target)
 		{
-			float size = 1.0f;
-			glm::mat4 One(1.0f);
-
 			if (lastPosition != position)
 			{
 				translationMatrix = glm::translate(One, -position);

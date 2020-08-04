@@ -24,10 +24,10 @@ namespace geofenix
 			glm::vec3 lastRotation;
 			glm::vec3 scale;
 
-			glm::mat4 translationMatrix;
-			glm::mat4 rotationMatrix;
-
 			Object(glm::vec3 pos, glm::vec3 rot, glm::vec3 sca);
+
+			glm::mat4 translationMatrix, rotationMatrix;
+			Vertex* verts[4];
 
 			Vertex* UpdateObject(Vertex* target);
 		};

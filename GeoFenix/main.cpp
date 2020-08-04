@@ -13,18 +13,8 @@ void Prnt()
 	printf("Hello!");
 }
 
-int main()
+void UpdateThread(Window& mainWindow)
 {
-	Window mainWindow("GeoFenix Engine", 1280, 720, false);
-	//win = mainWindow;
-	//shaderT = shader;
-	//SetTriangle();
-
-	void setWindowFPS(GLFWwindow *win);
-	void Input(Window window, Sprite& sprite);
-
-	Game::Start(mainWindow);
-
 	while (!mainWindow.Close())
 	{
 		mainWindow.Clear();
@@ -37,6 +27,21 @@ int main()
 
 		mainWindow.Update();
 	}
+}
+
+int main()
+{
+	Window mainWindow("GeoFenix Engine", 1280, 720, false);
+	//win = mainWindow;
+	//shaderT = shader;
+	//SetTriangle();
+
+	void setWindowFPS(GLFWwindow *win);
+	void Input(Window window, Sprite& sprite);
+
+	Game::Start(mainWindow);
+
+	UpdateThread(mainWindow);
 	
 	return 0;
 }

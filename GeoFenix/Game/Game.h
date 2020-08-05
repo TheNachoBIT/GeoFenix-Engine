@@ -6,6 +6,8 @@
 #include <thread>
 #define Print(x) std::cout << x << std::endl;
 
+#include "../Geometry Dash/gd.h"
+
 namespace geofenix
 {
 	using namespace graphics;

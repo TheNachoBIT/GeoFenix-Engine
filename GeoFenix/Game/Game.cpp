@@ -3,6 +3,8 @@
 namespace geofenix
 {
 
+	using namespace geodash;
+
 	//Object2D* obj;
 
 	Batch* batch;
@@ -12,11 +14,15 @@ namespace geofenix
 	{
 		Details(window);
 		batch = new Batch(*window.allTextures[0]);
+		/*
 		for(int x = 0; x < 100; x++)
 			for (int y = 0; y < 100; y++)
 			{
 				new Object(batch->CreateObject(glm::vec3(x, y, 0), glm::vec3(0.f, 0.f, 45.f), glm::vec3(1.0f)));
 			}
+			*/
+
+		Level::Load(*batch, 0);
 
 		/*
 
@@ -42,12 +48,6 @@ namespace geofenix
 	void Game::Update(Window& window)
 	{
 		batch->Render(window.allShaders[0]);
-
-		for (auto i : batch->allObjects)
-		{
-			i->position.x -= 1.0f * window.deltaTime;
-			i->rotation.z += 5.0f * window.deltaTime;
-		}
 
 		if (window.isKeyPressed(GLFW_KEY_ESCAPE))
 		{

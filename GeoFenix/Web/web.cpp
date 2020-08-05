@@ -17,7 +17,7 @@ namespace geofenix {
             Returns a vector
 
         */
-        void get(char const* url, std::string& response_string) {
+        std::string get(char const* url, std::string& response_string) {
 
             auto curl = curl_easy_init();
             if (curl) {
@@ -43,6 +43,8 @@ namespace geofenix {
                 curl_easy_perform(curl);
                 curl_easy_cleanup(curl);
                 curl = NULL;
+
+                return response_string;
             }
         }
         /*

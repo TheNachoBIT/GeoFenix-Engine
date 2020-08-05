@@ -181,6 +181,9 @@
     <Image Include="Resources\Images\square.png" />
     <Image Include="Resources\Images\title1.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="Resources\GDExamples\levelExample.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

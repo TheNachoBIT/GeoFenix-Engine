@@ -26,6 +26,11 @@ namespace geofenix
 			return obj;
 		}
 
+		void Batch::AddObject(Object* obj)
+		{
+			allObjects.push_back(obj);
+		}
+
 		/*
 		GLuint indices[] =
 		{

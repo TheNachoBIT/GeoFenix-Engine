@@ -25,6 +25,14 @@ namespace geofenix
 			~Batch();
 
 			Object CreateObject(glm::vec3 pos, glm::vec3 rot, glm::vec3 sca);
+			void AddObject(Object* obj);
+			void PrintObjectList()
+			{
+				for (auto i : allObjects)
+				{
+					std::cout << i->position.x << ", " << i->position.y << ", " << i->position.z << std::endl;
+				}
+			}
 
 			void Render(Shader* shader);
 		};

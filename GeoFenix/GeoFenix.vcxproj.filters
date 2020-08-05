@@ -113,4 +113,7 @@
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="Resources\GDExamples\levelExample.txt" />
+  </ItemGroup>
 </Project>

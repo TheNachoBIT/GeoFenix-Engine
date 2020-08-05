@@ -85,6 +85,12 @@ namespace geodash
 			case 6:
 				rotation.z = -std::stoi(results[i]);
 				break;
+
+			//Scale (GD)
+			case 32:
+				scale.x = std::stoi(results[i]);
+				scale.y = std::stoi(results[i]);
+				break;
 			}
 		}
 

@@ -11,7 +11,7 @@ namespace geodash
 		std::string text;
 
 		std::fstream ifstr;
-		ifstr.open("Resources/GDExamples/levelExample.txt", std::ios::in);
+		ifstr.open("Resources/GDExamples/Accelerate.txt", std::ios::in);
 
 		if (ifstr.is_open())
 		{

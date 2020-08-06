@@ -114,6 +114,7 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Resources\GDExamples\levelExample.txt" />
+    <Text Include="Resources\GDExamples\Accelerate.txt" />
+    <Text Include="Resources\GDExamples\LevelEasy.txt" />
   </ItemGroup>
 </Project>

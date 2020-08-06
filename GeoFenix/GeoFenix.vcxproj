@@ -77,7 +77,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)/Libraries/CURL/Win32/include;$(SolutionDir)/Libraries/SOIL2/include;$(SolutionDir)/Libraries/GLM/include;$(SolutionDir)/Libraries/GLEW/include;$(SolutionDir)/Libraries/GLFW/Win32/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)/Libraries/JSONCPP/include;$(SolutionDir)/Libraries/CURL/Win32/include;$(SolutionDir)/Libraries/SOIL2/include;$(SolutionDir)/Libraries/GLM/include;$(SolutionDir)/Libraries/GLEW/include;$(SolutionDir)/Libraries/GLFW/Win32/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;CURL_STATICLIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -92,7 +92,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)/Libraries/CURL/Win64/include;$(SolutionDir)/Libraries/SOIL2/include;$(SolutionDir)/Libraries/GLM/include;$(SolutionDir)/Libraries/GLEW/include;$(SolutionDir)/Libraries/GLFW/Win64/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)/Libraries/JSONCPP/include;$(SolutionDir)/Libraries/CURL/Win64/include;$(SolutionDir)/Libraries/SOIL2/include;$(SolutionDir)/Libraries/GLM/include;$(SolutionDir)/Libraries/GLEW/include;$(SolutionDir)/Libraries/GLFW/Win64/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;CURL_STATICLIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -109,7 +109,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)/Libraries/CURL/Win32/include;$(SolutionDir)/Libraries/SOIL2/include;$(SolutionDir)/Libraries/GLM/include;$(SolutionDir)/Libraries/GLEW/include;$(SolutionDir)/Libraries/GLFW/Win32/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)/Libraries/JSONCPP/include;$(SolutionDir)/Libraries/CURL/Win32/include;$(SolutionDir)/Libraries/SOIL2/include;$(SolutionDir)/Libraries/GLM/include;$(SolutionDir)/Libraries/GLEW/include;$(SolutionDir)/Libraries/GLFW/Win32/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;CURL_STATICLIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
     </ClCompile>
@@ -129,7 +129,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)/Libraries/CURL/Win64/include;$(SolutionDir)/Libraries/SOIL2/include;$(SolutionDir)/Libraries/GLM/include;$(SolutionDir)/Libraries/GLEW/include;$(SolutionDir)/Libraries/GLFW/Win64/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)/Libraries/JSONCPP/include;$(SolutionDir)/Libraries/CURL/Win64/include;$(SolutionDir)/Libraries/SOIL2/include;$(SolutionDir)/Libraries/GLM/include;$(SolutionDir)/Libraries/GLEW/include;$(SolutionDir)/Libraries/GLFW/Win64/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;CURL_STATICLIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -182,7 +182,8 @@
     <Image Include="Resources\Images\title1.png" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Resources\GDExamples\levelExample.txt" />
+    <Text Include="Resources\GDExamples\Accelerate.txt" />
+    <Text Include="Resources\GDExamples\LevelEasy.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

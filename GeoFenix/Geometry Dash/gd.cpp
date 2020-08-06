@@ -1,5 +1,6 @@
 #include "gd.h"
 
+#include "nlohmann/json.hpp"
 namespace geodash
 {
 	using namespace web;
@@ -7,24 +8,17 @@ namespace geodash
 	std::vector<std::string>* Level::loadedObjects;
 
 	void Level::Load(Batch& batch, int id)
+
 	{
-		std::string text;
+		std::string theresp;
+		std::string web = "https://gdbrowser.com/api/analyze/" + std::to_string(id);
+		web::get(web.c_str(), theresp);
 
-		std::fstream ifstr;
-		ifstr.open("Resources/GDExamples/Accelerate.txt", std::ios::in);
+		auto text = nlohmann::json::parse(theresp);
 
-		if (ifstr.is_open())
+		if (text["data"] != "")
 		{
-			getline(ifstr, text);
-			std::cout << "File opened!" << std::endl;
-			ifstr.close();
-		}
-		else
-			std::cout << "ERROR: File coudn't open." << std::endl;
-
-		if (text != "")
-		{
-			loadedObjects = new std::vector<std::string>(Level::GetAllObjects(text));
+			loadedObjects = new std::vector<std::string>(Level::GetAllObjects(text["data"]));
 			for (int i = 0; i < loadedObjects->size(); i++)
 			{
 				GetObjectProperties(i, batch);

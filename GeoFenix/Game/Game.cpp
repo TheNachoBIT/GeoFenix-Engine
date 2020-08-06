@@ -1,5 +1,4 @@
 #include "Game.h"
-
 namespace geofenix
 {
 
@@ -22,8 +21,9 @@ namespace geofenix
 			}
 			*/
 
-		Level::Load(*batch, 0);
-
+		
+		Level::Load(*batch, 62152040);
+		
 		/*
 
 

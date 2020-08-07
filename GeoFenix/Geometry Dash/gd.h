@@ -2,6 +2,7 @@
 
 #include "../Graphics/Batch/batch.h"
 #include <fstream>
+#include "nlohmann/json.hpp"
 #include <string.h>
 #include "../Web/web.h";
 
@@ -9,6 +10,8 @@ namespace geodash
 {
 	using namespace geofenix;
 	using namespace graphics;
+	using namespace nlohmann;
+
 	static class Level
 	{
 	public:

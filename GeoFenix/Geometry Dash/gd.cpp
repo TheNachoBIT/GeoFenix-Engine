@@ -1,6 +1,4 @@
 #include "gd.h"
-
-#include "nlohmann/json.hpp"
 namespace geodash
 {
 	using namespace web;
@@ -12,7 +10,7 @@ namespace geodash
 	{
 		std::string theresp;
 		std::string web = "https://gdbrowser.com/api/analyze/" + std::to_string(id);
-		web::get(web.c_str(), theresp);
+		web::get(web.c_str(), theresp, true);
 
 		auto text = nlohmann::json::parse(theresp);
 

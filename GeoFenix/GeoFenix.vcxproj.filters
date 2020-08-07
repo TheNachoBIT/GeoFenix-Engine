@@ -116,5 +116,6 @@
   <ItemGroup>
     <Text Include="Resources\GDExamples\Accelerate.txt" />
     <Text Include="Resources\GDExamples\LevelEasy.txt" />
+    <Text Include="Resources\levelid.txt" />
   </ItemGroup>
 </Project>

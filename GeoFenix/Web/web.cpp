@@ -17,7 +17,11 @@ namespace geofenix {
             Returns a vector
 
         */
-        std::string get(char const* url, std::string& response_string) {
+        int lastPercentage;
+        int progress_func(void* ptr, double TotalToDownload, double NowDownloaded,
+            double TotalToUpload, double NowUploaded);
+
+        std::string get(char const* url, std::string& response_string, bool printProgress) {
 
             auto curl = curl_easy_init();
             if (curl) {
@@ -32,6 +36,12 @@ namespace geofenix {
                 curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writeFunction);
                 curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response_string);
                 curl_easy_setopt(curl, CURLOPT_HEADERDATA, &header_string);
+
+                if (printProgress)
+                {
+                    curl_easy_setopt(curl, CURLOPT_NOPROGRESS, FALSE);
+                    curl_easy_setopt(curl, CURLOPT_PROGRESSFUNCTION, progress_func);
+                }
 
                 char* url;
                 long response_code;
@@ -73,6 +83,32 @@ namespace geofenix {
 
                 curl_easy_cleanup(curl);
             }
+        }
+
+        int progress_func(void* ptr, double TotalToDownload, double NowDownloaded,
+            double TotalToUpload, double NowUploaded)
+        {
+            // ensure that the file to be downloaded is not empty
+            // because that would cause a division by zero error later on
+            if (TotalToDownload <= 0.0) {
+                return 0;
+            }
+
+            // how wide you want the progress meter to be
+            int totaldotz = 40;
+            double fractiondownloaded = NowDownloaded / TotalToDownload;
+            // part of the progressmeter that's already "full"
+            int dotz = round(fractiondownloaded * totaldotz);
+
+            // create the "meter"
+            int ii = 0;
+            int percentage = fractiondownloaded * 100.0f;
+            if (lastPercentage != percentage)
+            {
+                std::cout << "Downloading Level from GDBrowser: " << percentage << "%" << std::endl;
+                lastPercentage = percentage;
+            }
+            return 0;
         }
     }
 }

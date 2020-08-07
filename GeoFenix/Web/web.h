@@ -10,7 +10,7 @@ namespace geofenix {
 		get("http://google.com", string);
 		
 		Returns a vector*/
-		std::string get(char const*  url, std::string& response_string);
+		std::string get(char const*  url, std::string& response_string, bool printProgress);
 
 		void post(char const* url, const char*, std::string& string);
 	}

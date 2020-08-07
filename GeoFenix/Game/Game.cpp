@@ -11,7 +11,6 @@ namespace geofenix
 
 	void Game::Start(Window& window)
 	{
-		Details(window);
 		batch = new Batch(*window.allTextures[0]);
 		/*
 		for(int x = 0; x < 100; x++)
@@ -21,8 +20,19 @@ namespace geofenix
 			}
 			*/
 
+		int id;
+		std::fstream stream("Resources/levelid.txt", std::ios::in);
+		std::string result;
+
+		if (stream.is_open())
+		{
+			getline(stream, result);
+			id = std::stoi(result);
+		}
+
 		
-		Level::Load(*batch, 62152040);
+		Level::Load(*batch, id);
+		Details(window);
 		
 		/*
 

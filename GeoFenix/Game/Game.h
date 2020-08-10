@@ -30,7 +30,7 @@ namespace geofenix
 			Print("Web API by NicknameGG (https://twitter.com/NicknameGG_)");
 			Print("Level Downloading supported by GDBrowser (https://gdbrowser.com), made by Colon (https://twitter.com/TheRealGDColon)");
 			Print("");
-			Print("TEST BUILD 0.01");
+			Print("TEST BUILD 0.10");
 			Print("");
 			Print("CONTROLS:");
 			Print("WASD: Move");

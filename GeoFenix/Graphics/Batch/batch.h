@@ -1,6 +1,7 @@
 #pragma once
 
 #include <thread>
+#include "../Window/window.h"
 #include "Object\Object.h"
 
 namespace geofenix
@@ -16,15 +17,19 @@ namespace geofenix
 
 			std::vector<Object*> allObjects;
 			glm::mat4 ModelMatrix;
+			glm::mat4 ModelViewMatrix;
+
+			Window& window;
 
 			void StartVAO();
 			void Matrix();
 			void UpdateUniforms(Shader* shader);
 
-			Batch(Texture& tex);
+			Batch(Texture& tex, Window& window);
 			~Batch();
 
 			Object CreateObject(glm::vec3 pos, glm::vec3 rot, glm::vec3 sca);
+			bool inFrustum(glm::vec3 point3D);
 			void AddObject(Object* obj);
 			void PrintObjectList()
 			{

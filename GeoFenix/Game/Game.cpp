@@ -11,7 +11,7 @@ namespace geofenix
 
 	void Game::Start(Window& window)
 	{
-		batch = new Batch(*window.allTextures[0]);
+		batch = new Batch(*window.allTextures[0], window);
 		/*
 		for(int x = 0; x < 100; x++)
 			for (int y = 0; y < 100; y++)
@@ -19,6 +19,8 @@ namespace geofenix
 				new Object(batch->CreateObject(glm::vec3(x, y, 0), glm::vec3(0.f, 0.f, 45.f), glm::vec3(1.0f)));
 			}
 			*/
+
+		new Object(batch->CreateObject(glm::vec3(0, 0, 0), glm::vec3(0.f, 0.f, 45.f), glm::vec3(1.0f)));
 
 		int id;
 		std::fstream stream("Resources/levelid.txt", std::ios::in);
@@ -29,7 +31,6 @@ namespace geofenix
 			getline(stream, result);
 			id = std::stoi(result);
 		}
-
 		
 		Level::Load(*batch, id);
 		Details(window);
@@ -58,7 +59,6 @@ namespace geofenix
 	void Game::Update(Window& window)
 	{
 		batch->Render(window.allShaders[0]);
-
 		if (window.isKeyPressed(GLFW_KEY_ESCAPE))
 		{
 			exit(0);

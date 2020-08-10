@@ -4,10 +4,10 @@ namespace geofenix
 {
 	namespace graphics
 	{
-		Batch::Batch(Texture& tex) :
-			texture(tex)
+		Batch::Batch(Texture& tex, Window& window) :
+			texture(tex), window(window)
 		{
-			
+
 			Batch::StartVAO();
 			Batch::Matrix();
 		}
@@ -84,6 +84,13 @@ namespace geofenix
 			shader->setUniform1i("texture0", 0);
 			shader->setUniformMat4("ModelMatrix", ModelMatrix);
 		}
+
+		bool Batch::inFrustum(glm::vec3 point3D) {
+			glm::vec4 clipSpacePos = window.ProjectionMatrix * (window.camera.ViewMatrix * glm::vec4(point3D, 0));
+			std::cout << clipSpacePos.x << " " << clipSpacePos.y << std::endl;
+			return clipSpacePos.x > -1 && clipSpacePos.x < 1 && clipSpacePos.z > -1 && clipSpacePos.z < 1;
+		}
+
 
 		static std::vector<uint32_t> indices;
 		static std::vector<Vertex> vertices;

@@ -60,7 +60,7 @@ setWindowFPS(GLFWwindow* win)
 		char title[128];
 		snprintf(title, sizeof(title), "GeoFenix Engine || FPS: %d", frameCount);
 
-		glfwSetWindowTitle(win, title);
+ 		glfwSetWindowTitle(win, title);
 
 		frameCount = 0;
 		previousTime = currentTime;

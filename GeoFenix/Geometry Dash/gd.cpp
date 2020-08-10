@@ -10,20 +10,52 @@ namespace geodash
 	{
 		std::string theresp;
 		std::string web = "https://gdbrowser.com/api/analyze/" + std::to_string(id);
+
+		std::string theresp2;
+		std::string web2 = "https://gdbrowser.com/api/level/" + std::to_string(id) + "?download=true";
+
 		web::get(web.c_str(), theresp, true);
 
-		auto text = nlohmann::json::parse(theresp);
-
-		if (text["data"] != "")
+		if (theresp != "-1")
 		{
-			loadedObjects = new std::vector<std::string>(Level::GetAllObjects(text["data"]));
-			for (int i = 0; i < loadedObjects->size(); i++)
+			std::cout << "GDBrowser: Level Analyzer not corrupted!" << std::endl;
+			auto text = nlohmann::json::parse(theresp);
+
+			if (text["data"] != "")
 			{
-				GetObjectProperties(i, batch);
+				loadedObjects = new std::vector<std::string>(Level::GetAllObjects(text["data"]));
+				for (int i = 0; i < loadedObjects->size(); i++)
+				{
+					GetObjectProperties(i, batch);
+				}
 			}
+			else
+				std::cout << "ERROR: Txt file not found." << std::endl;
 		}
 		else
-			std::cout << "ERROR: Txt file not found." << std::endl;
+		{
+			std::cout << "GDBrowser: Level Analyzer data corrupted! Retrieving Normal Level data..." << std::endl;
+			web::get(web2.c_str(), theresp2, true);
+
+			if (theresp2 != "-1")
+			{
+				std::cout << "GDBrowser: Normal Level data not corrupted!" << std::endl;
+				auto text2 = nlohmann::json::parse(theresp2);
+
+				if (text2["data"] != "")
+				{
+					loadedObjects = new std::vector<std::string>(Level::GetAllObjects(text2["data"]));
+					for (int i = 0; i < loadedObjects->size(); i++)
+					{
+						GetObjectProperties(i, batch);
+					}
+				}
+				else
+					std::cout << "ERROR: Txt file not found." << std::endl;
+			}
+			else
+				std::cout << "ERROR: Returns -1" << std::endl;
+		}
 	}
 
 	std::vector<std::string> Level::GetAllObjects(const std::string& ret)

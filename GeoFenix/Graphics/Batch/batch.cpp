@@ -19,6 +19,11 @@ namespace geofenix
 			glDeleteBuffers(1, &EBO);
 		}
 
+		bool comparePosition(Object* obj1, Object* obj2)
+		{
+			return (obj1->position.x < obj2->position.x);
+		}
+
 		Object Batch::CreateObject(glm::vec3 pos, glm::vec3 rot, glm::vec3 sca)
 		{
 			Object obj(pos, rot, sca);
@@ -85,13 +90,6 @@ namespace geofenix
 			shader->setUniformMat4("ModelMatrix", ModelMatrix);
 		}
 
-		bool Batch::inFrustum(glm::vec3 point3D) {
-			glm::vec4 clipSpacePos = window.ProjectionMatrix * (window.camera.ViewMatrix * glm::vec4(point3D, 0));
-			std::cout << clipSpacePos.x << " " << clipSpacePos.y << std::endl;
-			return clipSpacePos.x > -1 && clipSpacePos.x < 1 && clipSpacePos.z > -1 && clipSpacePos.z < 1;
-		}
-
-
 		static std::vector<uint32_t> indices;
 		static std::vector<Vertex> vertices;
 		bool once = false;
@@ -103,11 +101,20 @@ namespace geofenix
 			indices.resize(allObjects.size() * 6);
 
 			Vertex* buffer = &vertices[0];
+			int hiddenObjectCount = 0;
+			int objectCount = 0;
 
-			for (int i = 0; i < allObjects.size(); i++)
+			while (objectCount < allObjects.size() && hiddenObjectCount < 10000)
 			{
-				buffer = allObjects[i]->UpdateObject(buffer);
-				indexCount += 6;
+				if (window.camera.pointIsInFrustum(allObjects[objectCount]->position))
+				{
+					buffer = allObjects[objectCount]->UpdateObject(buffer);
+				}
+				else
+				{
+					hiddenObjectCount++;
+				}
+				objectCount++;
 			}
 
 			Batch::UpdateUniforms(shader);
@@ -141,7 +148,7 @@ namespace geofenix
 
 			glBindVertexArray(VAO);
 
-			glDrawElements(GL_TRIANGLES, indexCount, GL_UNSIGNED_INT, nullptr);
+			glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, nullptr);
 		}
 	}
 }

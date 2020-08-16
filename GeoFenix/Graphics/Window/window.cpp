@@ -103,6 +103,7 @@ namespace geofenix {
 
 			UpdateDeltaTime();
 			Uniforms();
+			camera.CreateFrustumFromMatrix(ProjectionMatrix * camera.ViewMatrix);
 			RenderMatrix();
 
 			glfwSwapBuffers(m_Window);

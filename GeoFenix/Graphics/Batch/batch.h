@@ -3,6 +3,7 @@
 #include <thread>
 #include "../Window/window.h"
 #include "Object\Object.h"
+#include <math.h>
 
 namespace geofenix
 {
@@ -29,8 +30,8 @@ namespace geofenix
 			~Batch();
 
 			Object CreateObject(glm::vec3 pos, glm::vec3 rot, glm::vec3 sca);
-			bool inFrustum(glm::vec3 point3D);
 			void AddObject(Object* obj);
+
 			void PrintObjectList()
 			{
 				for (auto i : allObjects)

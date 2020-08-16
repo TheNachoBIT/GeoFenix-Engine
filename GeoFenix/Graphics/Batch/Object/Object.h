@@ -23,6 +23,8 @@ namespace geofenix
 			glm::vec3 rotation;
 			glm::vec3 lastRotation;
 			glm::vec3 scale;
+			std::vector<Object*> neighbours;
+			bool isVisible = true;
 
 			Object(glm::vec3 pos, glm::vec3 rot, glm::vec3 sca);
 

@@ -11,7 +11,7 @@ Here: https://github.com/TheNachoBIT/GeoFenix-Engine/releases
 
 # I wanna run this project, how can i do it?
 
-Well, first of all, you're gonna need to install "Visual Studio 2019" with the "Desktop Environment for C++" package (make sure in the installer to mark "Windows 10 SDK", probably located on the right in the Visual Studio Installer, otherwise is not going to run).
+Well, first of all, you're gonna need to install (if you don't have it) "Visual Studio 2019" with the "Desktop Environment for C++" package (make sure in the installer to mark "Windows 10 SDK", probably located on the right in the Visual Studio Installer, otherwise is not going to run).
 
 Once you have everything installed, proceed to open up the ".sln" project with that application and you're done!
 

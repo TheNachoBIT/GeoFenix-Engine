@@ -54,11 +54,6 @@ namespace geofenix
 			Print("basicMinor.vert and basicMinor.frag are the same but for older processors and graphics cards.");
 			Print("In the case of a syntax error while modifying, it will drop an error at the top of this whole message.");
 			Print("================================");
-			Print("");
-			Print("This is still at the moment Close Source due to being an unfinished product.");
-			Print("But feel free to look at the code (if you can) and if you are a programmer,");
-			Print("Let me know if i'm doing something that is not that great, i'm open to criticism :)");
-			Print("");
 			Print("======================================");
 		}
 	};

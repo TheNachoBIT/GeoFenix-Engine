@@ -39,6 +39,7 @@ Yes, A LOT, for example:
 # I have an issue, problem, bug, suggestion or an idea about this.
 
 Then feel free to say it in here:
-https://github.com/TheNachoBIT/GeoFenix-Engine/issues
+https://github.com/TheNachoBIT/GeoFenix-Engine/issues (Or just go to the "Issues" tab located at the top of the File Explorer.) or via My Twitter or Discord.
 
-Or just go to the "Issues" tab located at the top of the File Explorer.
+# This game engine is under the MIT License!
+For more details, check out the "LICENSE" file on this repository.

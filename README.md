@@ -3,7 +3,7 @@
 GeoFenix is a game engine which goal is to extend Geometry Dash and RetroFunk's Limits and make everything much faster.
 This engine contains 2D objects located in a 3D space at the moment, and it's capable to contain a lot of them in the camera with really good results!
 
-At the moment, as an example you can load Online Levels from Geometry Dash using GDBrowser's API (https://gdbrowser.com & https://gdbrowser.com/api/) so you can load and render entire levels from small ones to really big ones (100k to +300k objects).
+At the moment it's only a performance test, so as an example you can load Online Levels from Geometry Dash using GDBrowser's API (https://gdbrowser.com & https://gdbrowser.com/api/) so you can load and render entire levels from small ones to really big ones (100k to +300k objects).
 
 # I wanna play this test in an executable file, where is the download link?
 

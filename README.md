@@ -36,7 +36,7 @@ Yes, A LOT, for example:
 - More tools for coding.
 - Cross-platforming (Mac and Linux support).
 
-# There's an issue, problem, bug, suggestion or an idea about this.
+# I have an issue, problem, bug, suggestion or an idea about this.
 
 Then feel free to say it in here:
 https://github.com/TheNachoBIT/GeoFenix-Engine/issues

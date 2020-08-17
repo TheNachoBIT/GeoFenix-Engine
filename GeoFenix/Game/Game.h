@@ -4,6 +4,7 @@
 #include "../Graphics/Batch/batch.h"
 #include "../Web/web.h"
 #include <thread>
+#include "../FileSystem/file.h"
 #define Print(x) std::cout << x << std::endl;
 
 #include "../Geometry Dash/gd.h"

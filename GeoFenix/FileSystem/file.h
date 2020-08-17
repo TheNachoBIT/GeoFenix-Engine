@@ -23,6 +23,12 @@ namespace geofenix
 			return result;
 		}
 
+		static int ReadToInt(const char* filePath)
+		{
+			std::string result = Read(filePath);
+			return std::stoi(result);
+		}
+
 		static unsigned char* LoadImage(const char* filePath, int image_width, int image_height)
 		{
 			unsigned char* image = SOIL_load_image(filePath, &image_width, &image_height, NULL, SOIL_LOAD_RGBA);

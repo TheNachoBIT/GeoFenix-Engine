@@ -33,7 +33,7 @@ Yes, A LOT, for example:
 - Multithreading.
 - Audio.
 - UI (User Interfaces).
-- Textures.
+- More tools for coding.
 - Cross-platforming (Mac and Linux support).
 
 # There's an issue, problem, bug, suggestion or an idea about this.

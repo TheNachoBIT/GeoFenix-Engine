@@ -4,8 +4,8 @@ namespace geofenix
 {
 	namespace graphics
 	{
-		Batch::Batch(Texture& tex, Window& window) :
-			texture(tex), window(window)
+		Batch::Batch(Texture& tex, Window& window, int id) :
+			texture(tex), window(window), batchID(id)
 		{
 
 			Batch::StartVAO();
@@ -26,7 +26,7 @@ namespace geofenix
 
 		Object Batch::CreateObject(glm::vec3 pos, glm::vec3 rot, glm::vec3 sca)
 		{
-			Object obj(pos, rot, sca);
+			Object obj(pos, rot, sca, 0);
 			allObjects.push_back(&obj);
 			return obj;
 		}
@@ -90,9 +90,6 @@ namespace geofenix
 			shader->setUniformMat4("ModelMatrix", ModelMatrix);
 		}
 
-		static std::vector<uint32_t> indices;
-		static std::vector<Vertex> vertices;
-		bool once = false;
 		void Batch::Render(Shader* shader)
 		{
 			uint32_t indexCount = 0;
@@ -104,30 +101,25 @@ namespace geofenix
 			int hiddenObjectCount = 0;
 			int objectCount = 0;
 
-			while (objectCount < allObjects.size() && hiddenObjectCount < 10000)
+			while (objectCount < allObjects.size())
 			{
-				if (window.camera.pointIsInFrustum(allObjects[objectCount]->position))
-				{
-					buffer = allObjects[objectCount]->UpdateObject(buffer);
-				}
-				else
-				{
-					hiddenObjectCount++;
-				}
+				buffer = allObjects[objectCount]->UpdateObject(buffer);
 				objectCount++;
 			}
 
 			Batch::UpdateUniforms(shader);
 
-			if (!once)
+			if (!onStart)
 			{
+				std::cout << "Batch Info " << batchID << ": " << vertices.size() << " " << indices.size() << std::endl;
+
 				shader->enable();
 				texture.enable(0);
-				once = true;
+				onStart = true;
 			}
 
 			uint32_t offset = 0;
-			for (size_t i = 0; i < allObjects.size() * 6; i += 6)
+			for (size_t i = 0; i < indices.size(); i += 6)
 			{
 				indices[i + 0] = 0 + offset;
 				indices[i + 1] = 1 + offset;
@@ -141,10 +133,10 @@ namespace geofenix
 			}
 
 			glBindBuffer(GL_ARRAY_BUFFER, VBO);
-			glBufferData(GL_ARRAY_BUFFER, allObjects.size() * 4 * sizeof(Vertex), &vertices[0], GL_DYNAMIC_DRAW);
+			glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(Vertex), &vertices[0], GL_DYNAMIC_DRAW);
 
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-			glBufferData(GL_ELEMENT_ARRAY_BUFFER, allObjects.size() * 6 * sizeof(uint32_t), &indices[0], GL_DYNAMIC_DRAW);
+			glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(uint32_t), &indices[0], GL_DYNAMIC_DRAW);
 
 			glBindVertexArray(VAO);
 

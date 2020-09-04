@@ -16,10 +16,11 @@ namespace geodash
 	{
 	public:
 		static std::vector<std::string>* loadedObjects;
-		static void Load(Batch& batch, int id);
+		static void Load(std::vector<Batch*>& batches, int id, Window& window);
+		static void Render(std::vector<Batch*>& batches, Window& window);
 
 		static std::vector<std::string> GetAllObjects(const std::string& ret);
-		static void GetObjectProperties(int id, Batch& batch);
+		static Object GetObjectProperties(int id);
 
 		static void Split(std::vector<std::string>& v, const std::string& s, const char* c
 		) {

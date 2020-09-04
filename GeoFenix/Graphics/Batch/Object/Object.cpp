@@ -4,8 +4,10 @@ namespace geofenix
 {
 	namespace graphics
 	{
-		Object::Object(glm::vec3 pos, glm::vec3 rot, glm::vec3 sca)
+		Object::Object(glm::vec3 pos, glm::vec3 rot, glm::vec3 sca, int ObjId)
+			: translationMatrix(glm::mat4(0)), rotationMatrix(glm::mat4(0))
 		{
+			id = ObjId;
 			position = pos;
 			lastPosition = pos + glm::vec3(1.0f);
 			scale = sca;
@@ -52,6 +54,8 @@ namespace geofenix
 			target->color = glm::vec3(1.0f, 1.0f, 0.2f);
 			target->texcoord = glm::vec2(1.0f, 1.0f);
 			target++;
+
+			onStart = true;
 
 			return target;
 		}

@@ -5,9 +5,24 @@ namespace geodash
 
 	std::vector<std::string>* Level::loadedObjects;
 
-	void Level::Load(Batch& batch, int id)
+	void Remove(std::vector<int>& v)
+	{
+		auto end = v.end();
+		for (auto it = v.begin(); it != end; ++it) {
+			end = std::remove(it + 1, end, *it);
+		}
+
+		v.erase(end, v.end());
+	}
+
+	void Level::Load(std::vector<Batch*>& batches, int id, Window& window)
 
 	{
+		batches.clear();
+
+		std::vector<Object*> loadedObjs;
+		std::vector<int> batchIDs;
+
 		std::string theresp;
 		std::string web = "https://gdbrowser.com/api/analyze/" + std::to_string(id);
 
@@ -26,7 +41,9 @@ namespace geodash
 				loadedObjects = new std::vector<std::string>(Level::GetAllObjects(text["data"]));
 				for (int i = 0; i < loadedObjects->size(); i++)
 				{
-					GetObjectProperties(i, batch);
+					Object* obj = new Object(GetObjectProperties(i));
+					//batch.AddObject(obj);
+					loadedObjs.push_back(obj);
 				}
 			}
 			else
@@ -47,7 +64,9 @@ namespace geodash
 					loadedObjects = new std::vector<std::string>(Level::GetAllObjects(text2["data"]));
 					for (int i = 0; i < loadedObjects->size(); i++)
 					{
-						GetObjectProperties(i, batch);
+						Object* obj = new Object(GetObjectProperties(i));
+						//batch.AddObject(obj);
+						loadedObjs.push_back(obj);
 					}
 				}
 				else
@@ -56,6 +75,32 @@ namespace geodash
 			else
 				std::cout << "ERROR: Returns -1" << std::endl;
 		}
+
+		for (auto i : loadedObjs)
+		{
+			batchIDs.push_back(i->id);
+		}
+
+		Remove(batchIDs);
+
+		for (auto m : batchIDs)
+		{
+			batches.push_back(new Batch(*window.allTextures[0], window, m));
+		}
+
+		for (auto i : loadedObjs)
+		{
+			for (auto m : batches)
+			{
+				if (m->batchID == i->id)
+				{
+					m->AddObject(i);
+				}
+			}
+		}
+
+		for (auto m : batches)
+			std::cout << m->batchID << " " << m->allObjects.size() << std::endl;
 	}
 
 	std::vector<std::string> Level::GetAllObjects(const std::string& ret)
@@ -71,7 +116,7 @@ namespace geodash
 		return objs;
 	}
 
-	void Level::GetObjectProperties(int id, Batch& batch)
+	Object Level::GetObjectProperties(int id)
 	{
 		std::vector<std::string> splitProcess;
 		Level::Split(splitProcess, loadedObjects->at(id), ",");
@@ -87,7 +132,7 @@ namespace geodash
 			else
 				results.push_back(splitProcess[i]);
 		}
-
+		int objectID = 0;
 		glm::vec3 position(0.f), rotation(0.f), scale(1.0f);
 		for (int i = 0; i < variables.size(); i++)
 		{
@@ -95,6 +140,7 @@ namespace geodash
 			{
 			//Object ID
 			case 1:
+				objectID = std::stoi(results[i]);
 				break;
 
 			//Position
@@ -118,6 +164,14 @@ namespace geodash
 			}
 		}
 
-		new Object(batch.CreateObject(position, rotation, scale));
+		return Object(position, rotation, scale, objectID);
+	}
+
+	void Level::Render(std::vector<Batch*>& batches, Window& window)
+	{
+		for (auto m : batches)
+		{
+			m->Render(window.allShaders[0]);
+		}
 	}
 }

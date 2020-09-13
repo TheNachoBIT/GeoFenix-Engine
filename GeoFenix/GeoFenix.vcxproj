@@ -77,7 +77,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)/Libraries/JSONCPP/include;$(SolutionDir)/Libraries/CURL/Win32/include;$(SolutionDir)/Libraries/SOIL2/include;$(SolutionDir)/Libraries/GLM/include;$(SolutionDir)/Libraries/GLEW/include;$(SolutionDir)/Libraries/GLFW/Win32/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)/Libraries/IMGUI/include;$(SolutionDir)/Libraries/JSONCPP/include;$(SolutionDir)/Libraries/CURL/Win32/include;$(SolutionDir)/Libraries/SOIL2/include;$(SolutionDir)/Libraries/GLM/include;$(SolutionDir)/Libraries/GLEW/include;$(SolutionDir)/Libraries/GLFW/Win32/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;CURL_STATICLIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -92,7 +92,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)/Libraries/JSONCPP/include;$(SolutionDir)/Libraries/CURL/Win64/include;$(SolutionDir)/Libraries/SOIL2/include;$(SolutionDir)/Libraries/GLM/include;$(SolutionDir)/Libraries/GLEW/include;$(SolutionDir)/Libraries/GLFW/Win64/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)/Libraries/IMGUI/include;$(SolutionDir)/Libraries/JSONCPP/include;$(SolutionDir)/Libraries/CURL/Win64/include;$(SolutionDir)/Libraries/SOIL2/include;$(SolutionDir)/Libraries/GLM/include;$(SolutionDir)/Libraries/GLEW/include;$(SolutionDir)/Libraries/GLFW/Win64/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;CURL_STATICLIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -109,7 +109,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)/Libraries/JSONCPP/include;$(SolutionDir)/Libraries/CURL/Win32/include;$(SolutionDir)/Libraries/SOIL2/include;$(SolutionDir)/Libraries/GLM/include;$(SolutionDir)/Libraries/GLEW/include;$(SolutionDir)/Libraries/GLFW/Win32/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)/Libraries/IMGUI/include;$(SolutionDir)/Libraries/JSONCPP/include;$(SolutionDir)/Libraries/CURL/Win32/include;$(SolutionDir)/Libraries/SOIL2/include;$(SolutionDir)/Libraries/GLM/include;$(SolutionDir)/Libraries/GLEW/include;$(SolutionDir)/Libraries/GLFW/Win32/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;CURL_STATICLIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
     </ClCompile>
@@ -150,6 +150,12 @@
     <ClCompile Include="Graphics\Sprite\sprite.cpp" />
     <ClCompile Include="Graphics\Texture\texture.cpp" />
     <ClCompile Include="Graphics\Window\window.cpp" />
+    <ClCompile Include="ImGUI\imgui.cpp" />
+    <ClCompile Include="ImGUI\imgui_demo.cpp" />
+    <ClCompile Include="ImGUI\imgui_draw.cpp" />
+    <ClCompile Include="ImGUI\imgui_impl_glfw.cpp" />
+    <ClCompile Include="ImGUI\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="ImGUI\imgui_widgets.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Objects\object2d.cpp" />
     <ClCompile Include="Web\web.cpp" />
@@ -165,6 +171,14 @@
     <ClInclude Include="Graphics\Sprite\sprite.h" />
     <ClInclude Include="Graphics\Texture\texture.h" />
     <ClInclude Include="Graphics\Window\window.h" />
+    <ClInclude Include="ImGUI\imconfig.h" />
+    <ClInclude Include="ImGUI\imgui.h" />
+    <ClInclude Include="ImGUI\imgui_impl_glfw.h" />
+    <ClInclude Include="ImGUI\imgui_impl_opengl3.h" />
+    <ClInclude Include="ImGUI\imgui_internal.h" />
+    <ClInclude Include="ImGUI\imstb_rectpack.h" />
+    <ClInclude Include="ImGUI\imstb_textedit.h" />
+    <ClInclude Include="ImGUI\imstb_truetype.h" />
     <ClInclude Include="Libraries\libraries.h" />
     <ClInclude Include="Maths\vertex.h" />
     <ClInclude Include="Objects\object2d.h" />

@@ -15,9 +15,13 @@ namespace geodash
 	static class Level
 	{
 	public:
+		static std::string levelName, userName;
+
 		static std::vector<std::string>* loadedObjects;
 		static void Load(std::vector<Batch*>& batches, int id, Window& window);
 		static void Render(std::vector<Batch*>& batches, Window& window);
+
+		static void LoadInfo(int id);
 
 		static std::vector<std::string> GetAllObjects(const std::string& ret);
 		static Object GetObjectProperties(int id);

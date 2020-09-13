@@ -19,6 +19,7 @@ void UpdateThread(Window& mainWindow)
 	{
 		mainWindow.Clear();
 		setWindowFPS(mainWindow.m_Window);
+
 		mainWindow.Render();
 
 		mainWindow.Input();
@@ -39,10 +40,21 @@ int main()
 	void setWindowFPS(GLFWwindow *win);
 	void Input(Window window, Sprite& sprite);
 
+	ImGui::CreateContext();
+
+	ImGui_ImplGlfw_InitForOpenGL(mainWindow.m_Window, true);
+	ImGui_ImplOpenGL3_Init("#version 130");
+
+	ImGui::StyleColorsDark();
+
 	Game::Start(mainWindow);
 
 	UpdateThread(mainWindow);
 	
+	ImGui_ImplOpenGL3_Shutdown();
+	ImGui_ImplGlfw_Shutdown();
+	ImGui::DestroyContext();
+
 	return 0;
 }
 

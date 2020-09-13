@@ -1,13 +1,19 @@
 #pragma once
 #include <iostream>
-#include "../Graphics/Window/window.h"
-#include "../Graphics/Batch/batch.h"
-#include "../Web/web.h"
-#include <thread>
+
+//include "../Graphics/Window/window.h"
+//include "../Graphics/Batch/batch.h"
+//include "../Web/web.h"
+//include <thread>
 #include "../FileSystem/file.h"
 #define Print(x) std::cout << x << std::endl;
 
 #include "../Geometry Dash/gd.h"
+
+#include "../ImGUI/imgui.h"
+#include "../ImGUI/imgui_impl_glfw.h"
+#include "../ImGUI/imgui_impl_opengl3.h"
+#include "../ImGUI/imgui_internal.h"
 
 namespace geofenix
 {

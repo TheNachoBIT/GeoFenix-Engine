@@ -26,7 +26,7 @@ namespace geofenix
 
 		Object Batch::CreateObject(glm::vec3 pos, glm::vec3 rot, glm::vec3 sca)
 		{
-			Object obj(pos, rot, sca, 0);
+			Object obj(pos, rot, sca, batchID);
 			allObjects.push_back(&obj);
 			return obj;
 		}

@@ -174,4 +174,17 @@ namespace geodash
 			m->Render(window.allShaders[0]);
 		}
 	}
+
+	std::string Level::levelName;
+	std::string Level::userName;
+
+	void Level::LoadInfo(int id)
+	{
+		std::string resp;
+		std::string web = "https://gdbrowser.com/api/level/" + std::to_string(id);
+		web::get(web.c_str(), resp, false);
+		auto jsonText = nlohmann::json::parse(resp);
+		levelName = jsonText["name"];
+		userName = jsonText["author"];
+	}
 }

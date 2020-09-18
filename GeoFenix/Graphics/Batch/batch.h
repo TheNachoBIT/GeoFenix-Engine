@@ -26,8 +26,10 @@ namespace geofenix
 			Window& window;
 
 			bool onStart = false;
-			std::vector<uint32_t> indices;
-			std::vector<Vertex> vertices;
+			static std::vector<uint32_t> indices;
+			static std::vector<Vertex> vertices;
+			int lastVertCount, lastIndexCount;
+			bool changeCheck;
 
 			void StartVAO();
 			void Matrix();
@@ -48,6 +50,13 @@ namespace geofenix
 			}
 
 			void Render(Shader* shader);
+		};
+
+		static class BatchManager
+		{
+		public:
+			static std::vector<Batch*> allBatches;
+			static std::vector<int> batchPositions;
 		};
 	}
 }

@@ -35,27 +35,25 @@ namespace geofenix
 				lastRotation = rotation;
 			}
 
-			target->position = rotationMatrix * glm::vec4(position.x - 0.5f * scale.x, position.y + 0.5f * scale.y, position.z, 1.0f);
+			target->position = glm::vec4(position.x - 0.5f * scale.x, position.y + 0.5f * scale.y, position.z, 1.0f);
 			target->color = glm::vec3(1.0f, 0.2f, 0.2f);
 			target->texcoord = glm::vec2(0.0f, 1.0f);
 			target++;
 
-			target->position = rotationMatrix * glm::vec4(position.x - 0.5f * scale.x, position.y - 0.5f * scale.y, position.z, 1.0f);
+			target->position = glm::vec4(position.x - 0.5f * scale.x, position.y - 0.5f * scale.y, position.z, 1.0f);
 			target->color = glm::vec3(0.2f, 1.0f, 0.2f);
 			target->texcoord = glm::vec2(0.0f, 0.0f);
 			target++;
 
-			target->position = rotationMatrix * glm::vec4(position.x + 0.5f * scale.x, position.y - 0.5f * scale.y, position.z, 1.0f);
+			target->position =glm::vec4(position.x + 0.5f * scale.x, position.y - 0.5f * scale.y, position.z, 1.0f);
 			target->color = glm::vec3(0.2f, 0.2f, 1.0f);
 			target->texcoord = glm::vec2(1.0f, 0.0f);
 			target++;
 
-			target->position = rotationMatrix * glm::vec4(position.x + 0.5f * scale.x, position.y + 0.5f * scale.y, position.z, 1.0f);
+			target->position = glm::vec4(position.x + 0.5f * scale.x, position.y + 0.5f * scale.y, position.z, 1.0f);
 			target->color = glm::vec3(1.0f, 1.0f, 0.2f);
 			target->texcoord = glm::vec2(1.0f, 1.0f);
 			target++;
-
-			onStart = true;
 
 			return target;
 		}

@@ -33,6 +33,7 @@ namespace geofenix
 
 		void Batch::AddObject(Object* obj)
 		{
+			obj->id = batchID;
 			allObjects.push_back(obj);
 		}
 
@@ -90,24 +91,16 @@ namespace geofenix
 			shader->setUniformMat4("ModelMatrix", ModelMatrix);
 		}
 
+		std::vector<uint32_t> Batch::indices;
+		std::vector<Vertex> Batch::vertices;
+
 		void Batch::Render(Shader* shader)
 		{
 			uint32_t indexCount = 0;
+			Vertex* buffer;
 
-			vertices.resize(allObjects.size() * 4);
-			indices.resize(allObjects.size() * 6);
-
-			Vertex* buffer = &vertices[0];
-			int hiddenObjectCount = 0;
-			int objectCount = 0;
-
-			while (objectCount < allObjects.size())
-			{
-				buffer = allObjects[objectCount]->UpdateObject(buffer);
-				objectCount++;
-			}
-
-			Batch::UpdateUniforms(shader);
+			vertices.resize(500 * 4);
+			indices.resize(500 * 6);
 
 			if (!onStart)
 			{
@@ -115,7 +108,17 @@ namespace geofenix
 
 				shader->enable();
 				texture.enable(0);
+
 				onStart = true;
+			}
+
+			buffer = &vertices[0];
+
+			int objectCount = 0;
+
+			for (auto i : allObjects)
+			{
+				buffer = i->UpdateObject(buffer);
 			}
 
 			uint32_t offset = 0;
@@ -132,11 +135,13 @@ namespace geofenix
 				offset += 4;
 			}
 
+			Batch::UpdateUniforms(shader);
+
 			glBindBuffer(GL_ARRAY_BUFFER, VBO);
-			glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(Vertex), &vertices[0], GL_DYNAMIC_DRAW);
+			glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(Vertex), vertices.data(), GL_DYNAMIC_DRAW);
 
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-			glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(uint32_t), &indices[0], GL_DYNAMIC_DRAW);
+			glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(uint32_t), indices.data(), GL_DYNAMIC_DRAW);
 
 			glBindVertexArray(VAO);
 

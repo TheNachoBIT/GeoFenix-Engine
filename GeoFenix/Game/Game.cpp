@@ -14,6 +14,7 @@ namespace geofenix
 	ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 
 	int id;
+	int order;
 
 	//This function gets called when the game starts
 	void Game::Start(Window& window)
@@ -26,11 +27,6 @@ namespace geofenix
 		if you don't wanna use it later on things like Update)
 		*/
 
-		//This is the system that loads the GD levels via GDBrowser
-		id = File::ReadToInt("Resources/levelid.txt");
-		Level::LoadInfo(id);
-		//Level::Load(allBatches, id, window);
-
 		//========================================================
 		ImGuiIO& io = ImGui::GetIO();
 		ImFontConfig config;
@@ -40,14 +36,10 @@ namespace geofenix
 		io.Fonts->AddFontDefault(&config);
 		//========================================================
 
-		for (int i = 0; i < 5; i++)
-		{
-			allBatches.push_back(new Batch(*window.allTextures[0], window, i));
-			for (int m = 0; m < 20; m++)
-			{
-				new Object(allBatches[i]->CreateObject(glm::vec3(i * 2, m, -m / 2), glm::vec3(0, 0, 45), glm::vec3(1)));
-			}
-		}
+		//This is the system that loads the GD levels via GDBrowser
+		id = File::ReadToInt("Resources/levelid.txt");
+		Level::LoadInfo(id);
+		allBatches = Level::Load(id, window);
 
 		//Gives information in the Console
 		Details(window);
@@ -56,6 +48,7 @@ namespace geofenix
 	bool levelPropertiesWindow, renderingWindow;
 	float renderLines[1000];
 	int maxFPS = 1;
+	bool alreadyPressed;
 
 	//This function gets called per frame
 	void Game::Update(Window& window)
@@ -101,6 +94,32 @@ namespace geofenix
 			if (renderingWindow)
 			{
 				ImGui::Begin("Rendering and Performance", &renderingWindow);
+
+				if (ImGui::GetIO().Framerate > 1000)
+				{
+					ImGui::TextColored(ImVec4(0, 1, 0.5f, 1), "Performance Quality: Extremely Good");
+				}
+				else if (ImGui::GetIO().Framerate > 500)
+				{
+					ImGui::TextColored(ImVec4(0, 1, 0.25f, 1), "Performance Quality: Really Good");
+				}
+				else if (ImGui::GetIO().Framerate > 240)
+				{
+					ImGui::TextColored(ImVec4(0, 1, 0.1f, 1), "Performance Quality: Very Good");
+				}
+				else if (ImGui::GetIO().Framerate > 60)
+				{
+					ImGui::TextColored(ImVec4(0, 1, 0, 1), "Performance Quality: Good");
+				}
+				else if (ImGui::GetIO().Framerate > 30)
+				{
+					ImGui::TextColored(ImVec4(1, 1, 0, 1), "Performance Quality: Decent");
+				}
+				else if (ImGui::GetIO().Framerate > 15)
+				{
+					ImGui::TextColored(ImVec4(1, 0, 0, 1), "Performance Quality: Bad");
+				}
+
 				ImGui::Text("Total Speed: %.3f ms", 1000.0f / ImGui::GetIO().Framerate);
 				ImGui::Text("FPS: %.1f", ImGui::GetIO().Framerate);
 
@@ -118,8 +137,20 @@ namespace geofenix
 				}
 
 				ImGui::PlotLines("", renderLines, 1000, 0, "", 1, maxFPS, ImVec2(ImGui::GetWindowWidth() - 15, 50));
+				ImGui::Text("Batches Currently Running: %i", allBatches.size());
+
+				int totalObjs = 0;
+				for (auto i : allBatches)
+				{
+					totalObjs += i->allObjects.size();
+				}
+
+				ImGui::Text("Total Amount of Objects: %i", totalObjs);
+				
 				ImGui::End();
 			}
+
+			//ImGui::ShowDemoWindow();
 
 			float ItemSpacing = ImGui::GetStyle().ItemSpacing.x;
 

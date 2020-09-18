@@ -15,11 +15,9 @@ namespace geodash
 		v.erase(end, v.end());
 	}
 
-	void Level::Load(std::vector<Batch*>& batches, int id, Window& window)
-
+	std::vector<Batch*> Level::Load(int id, Window& window)
 	{
-		batches.clear();
-
+		std::vector<Batch*> batches;
 		std::vector<Object*> loadedObjs;
 		std::vector<int> batchIDs;
 
@@ -42,7 +40,6 @@ namespace geodash
 				for (int i = 0; i < loadedObjects->size(); i++)
 				{
 					Object* obj = new Object(GetObjectProperties(i));
-					//batch.AddObject(obj);
 					loadedObjs.push_back(obj);
 				}
 			}
@@ -65,7 +62,6 @@ namespace geodash
 					for (int i = 0; i < loadedObjects->size(); i++)
 					{
 						Object* obj = new Object(GetObjectProperties(i));
-						//batch.AddObject(obj);
 						loadedObjs.push_back(obj);
 					}
 				}
@@ -92,15 +88,14 @@ namespace geodash
 		{
 			for (auto m : batches)
 			{
-				if (m->batchID == i->id)
+				if (i->id == m->batchID)
 				{
 					m->AddObject(i);
 				}
 			}
 		}
 
-		for (auto m : batches)
-			std::cout << m->batchID << " " << m->allObjects.size() << std::endl;
+		return batches;
 	}
 
 	std::vector<std::string> Level::GetAllObjects(const std::string& ret)
@@ -114,6 +109,35 @@ namespace geodash
 		std::cout << "Objects Splitted!" << std::endl;
 
 		return objs;
+	}
+
+	int Level::GetObjectID(int id)
+	{
+		std::vector<std::string> splitProcess;
+		Level::Split(splitProcess, loadedObjects->at(id), ",");
+		std::vector<int> variables;
+		std::vector<std::string> results;
+
+		for (int i = 0; i < splitProcess.size(); i++)
+		{
+			if (i % 2 == 0)
+			{
+				variables.push_back(std::stoi(splitProcess[i]));
+			}
+			else
+				results.push_back(splitProcess[i]);
+		}
+		int objectID = 0;
+		glm::vec3 position(0.f), rotation(0.f), scale(1.0f);
+		for (int i = 0; i < variables.size(); i++)
+		{
+			switch (variables[i])
+			{
+				//Object ID
+			case 1:
+				return std::stoi(results[i]);
+			}
+		}
 	}
 
 	Object Level::GetObjectProperties(int id)
@@ -158,8 +182,11 @@ namespace geodash
 
 			//Scale (GD)
 			case 32:
+				if(scale.x != 0 && scale.y != 0)
+				{
 				scale.x = std::stoi(results[i]);
 				scale.y = std::stoi(results[i]);
+				}
 				break;
 			}
 		}

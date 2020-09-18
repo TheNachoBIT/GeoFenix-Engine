@@ -18,7 +18,7 @@ void UpdateThread(Window& mainWindow)
 	while (!mainWindow.Close())
 	{
 		mainWindow.Clear();
-		setWindowFPS(mainWindow.m_Window);
+		//setWindowFPS(mainWindow.m_Window);
 
 		mainWindow.Render();
 
@@ -37,7 +37,6 @@ int main()
 	//shaderT = shader;
 	//SetTriangle();
 
-	void setWindowFPS(GLFWwindow *win);
 	void Input(Window window, Sprite& sprite);
 
 	ImGui::CreateContext();

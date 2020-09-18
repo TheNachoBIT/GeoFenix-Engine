@@ -99,7 +99,7 @@ namespace geofenix
 			uint32_t indexCount = 0;
 			Vertex* buffer;
 
-			vertices.resize(500 * 4);
+			vertices.resize(allObjects.size() * 4);
 			indices.resize(500 * 6);
 
 			if (!onStart)
@@ -113,8 +113,6 @@ namespace geofenix
 			}
 
 			buffer = &vertices[0];
-
-			int objectCount = 0;
 
 			for (auto i : allObjects)
 			{
@@ -139,13 +137,15 @@ namespace geofenix
 
 			glBindBuffer(GL_ARRAY_BUFFER, VBO);
 			glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(Vertex), vertices.data(), GL_DYNAMIC_DRAW);
+			//glBufferSubData(GL_ARRAY_BUFFER, 0, vertices.size() * sizeof(Vertex), vertices.data());
 
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 			glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(uint32_t), indices.data(), GL_DYNAMIC_DRAW);
+			//glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, 0, indices.size() * sizeof(uint32_t), indices.data());
 
 			glBindVertexArray(VAO);
 
-			glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, nullptr);
+			glDrawElements(GL_TRIANGLES, (indices.size() / 6) * 4, GL_UNSIGNED_INT, nullptr);
 		}
 	}
 }

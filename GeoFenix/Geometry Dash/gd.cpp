@@ -88,8 +88,11 @@ namespace geodash
 		{
 			for (auto m : batches)
 			{
-				if (i->id == m->batchID)
-				{
+				if (m->allObjects.size() >= 500) {
+					batchIDs.push_back(i->id);
+					auto newBatch = batchIDs.back();
+					batches.push_back(new Batch(*window.allTextures[0], window, newBatch));
+				} else if (i->id == m->batchID) {
 					m->AddObject(i);
 				}
 			}

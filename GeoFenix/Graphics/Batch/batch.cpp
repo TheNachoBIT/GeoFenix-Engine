@@ -100,7 +100,10 @@ namespace geofenix
 			Vertex* buffer;
 
 			vertices.resize(allObjects.size() * 4);
-			indices.resize(500 * 6);
+			if(allObjects.size() <= 5000)
+				indices.resize(5000 * 6);
+			else if(allObjects.size() > 5000)
+				indices.resize(100000 * 6);
 
 			if (!onStart)
 			{
@@ -120,7 +123,7 @@ namespace geofenix
 			}
 
 			uint32_t offset = 0;
-			for (size_t i = 0; i < indices.size(); i += 6)
+			for (size_t i = 0; i < allObjects.size() * 6; i += 6)
 			{
 				indices[i + 0] = 0 + offset;
 				indices[i + 1] = 1 + offset;
